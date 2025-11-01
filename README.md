@@ -84,7 +84,9 @@ python ‑m src.cli --merge
 
 ### Planned Features
 `--post`: After merging, push the result into Sure.
+
 `--categorise`: Automatically categorise transactions through LLM.
+
 `--sync`: Maybe `--sync` or `--post`
 
 These will be introduced in upcoming versions — please watch the repository for updates.
