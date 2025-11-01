@@ -6,7 +6,7 @@ The current workflow for importing multiple transactions for multiple accounts i
 
 > Note: At this stage the tool supports only the --merge operation. The --post (post transaction without importing), --categorise (auto categorise using llm) and --sync are planned for future releases.
 
-### Features
+###Features
 - Merges multiple CSV transaction files into a single file (--merge).
 - Maps account names to files via configuration.
 - Customises transaction columns (order and naming).
