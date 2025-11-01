@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./:/app
-      - ${TRANSACTIONS_DIR}:/app/transactions
-      - ${MERGED_TRANSACTIONS_DIR}:/app/merged
+      - ${TRANSACTIONS_DIR}:/data/transactions
+      - ${MERGED_TRANSACTIONS_DIR}:/data/merged
     tty: true
+    entrypoint: ["python", "-m", "src.cli"]

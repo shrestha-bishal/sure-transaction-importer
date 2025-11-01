@@ -3,8 +3,8 @@ import pandas as pd
 from datetime import datetime
 
 def run_merge():
-    input_dir = "/app/transactions"
-    output_dir = "/app/merged"
+    input_dir = "/data/transactions"
+    output_dir = "/data/merged"
     mapping_str = os.getenv("ACCOUNT_FILE_MAPPING")
     columns_str = os.getenv("TRANSACTION_COLUMNS")
     has_header_str = os.getenv("HAS_HEADER", "true").lower()

@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 import click
-from commands.merge import run_merge
+from src.commands.merge import run_merge
 
 # load .env
 load_dotenv()
