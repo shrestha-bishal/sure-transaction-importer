@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from datetime import datetime
 
 def run_merge():
     input_dir = os.getenv("TRANSACTIONS_DIR")
@@ -31,24 +32,40 @@ def run_merge():
         print("Error: ACCOUNT_FILE_MAPPINGS is empty or invalid in .env")
         return
     
+    # parse transaction columns
+    transaction_columns = [c.strip() for c in columns_str.split(",")]
 
+    merged = pd.DataFrame(columns=transaction_columns + ["account_name"])
 
     for account, filename in account_mapping.items():
         file_path = os.path.join(input_dir, filename)
 
         # checking if the file exists
         if not os.path.exists(file_path):
-            print(f"File not found: {filename}")
+            print(f"File not found: {file_path}")
             continue
 
         try:
+            # read the file depending on type and header setting
             if file_path.endswith(".csv"):
-                df = pd.read_csv(file_path)
+                df = pd.read_csv(file_path, skiprows=1 if has_header else 0, header=None)
             elif file_path.endswith(".xlsx"):
-                df = pd.read_excel(file_path)
+                df = pd.read_excel(file_path, skiprows=1 if has_header else 0, header=None)
             else: 
                 print(f"Unsupported file type: {filename}")
                 continue
 
+            df.columns = transaction_columns
+            df["account_name"] = account
+
+            merged = pd.contact([merged, df], ignore_index=True)
+
         except Exception as e:
             print(f"Error reading file {filename}: {e}")
+
+    os.makedirs(output_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H%M")
+    output_filename = f"merged_transactions_{timestamp}.csv"
+    output_file = os.path.join(output_dir, output_filename)
+    merged.to_csv(output_file, index=False)
+    print(f"Merged file saved to {output_file}")
