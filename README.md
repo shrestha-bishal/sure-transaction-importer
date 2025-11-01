@@ -2,11 +2,11 @@
 
 `surefinsync` is a Python utility designed to be an helper tool. If you love ~~Maybe~~ [Sure](https://github.com/we-promise/sure) as your personal finance application and it currently does not supports your banking transactions syncing though Plaid or SimpleFin then this can be a solution for you. 
 
-The current workflow for importing multiple transactions for multiple accounts is one on one or merging it in a single output file manually keeping track of account names which can be prone to erros which I personally have done many times. So I just developed this cli application which can save your precious time and effort. Currently it can merge transaction files from multiple accounts into a standardised output. It is built to integrate smoothly into a data pipeline or financial workflow of Sure, and runs reliably in Docker.
+The current workflow for importing multiple transactions from multiple accounts is one-on-one or merging it in a single output file manually keeping track of account names which can be prone to erros which I personally have done many times. So I just developed this cli application which automates this all and can save your precious time and effort. Currently it can merge transaction files from multiple accounts into a standardised output which then can go though the normal transaction import in Sure. It is built to integrate smoothly into a data pipeline or financial workflow of Sure, and runs reliably in Docker.
 
 > Note: At this stage the tool supports only the --merge operation. The --post (post transaction without importing), --categorise (auto categorise using llm) and --sync are planned for future releases.
 
-###Features
+### Features
 - Merges multiple CSV transaction files into a single file (--merge).
 - Maps account names to files via configuration.
 - Customises transaction columns (order and naming).
